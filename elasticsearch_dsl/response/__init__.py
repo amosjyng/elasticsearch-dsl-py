@@ -36,7 +36,7 @@ class Response(AttrDict):
     def __setstate__(self, state):
         super(AttrDict, self).__setattr__('_d_', state[0])
         super(AttrDict, self).__setattr__('_hits', state[1])
-        super(AttrDict, self).__setattr__('_search', state[1])
+        super(AttrDict, self).__setattr__('_search', state[2])
 
     def success(self):
         return self._shards.total == self._shards.successful and not self.timed_out
