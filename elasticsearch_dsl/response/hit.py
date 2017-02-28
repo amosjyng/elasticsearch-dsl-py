@@ -21,6 +21,13 @@ class Hit(AttrDict):
         super(Hit, self).__init__(data)
         # assign meta as attribute and not as key in self._d_
         super(AttrDict, self).__setattr__('meta', HitMeta(document))
+    
+    def __getstate__(self):
+        return (self._d_, self.meta)
+
+    def __setstate__(self, state):
+        super(AttrDict, self).__setattr__('_d_', state[0])
+        super(AttrDict, self).__setattr__('meta', state[1])
 
     def __dir__(self):
         # be sure to expose meta in dir(self)
